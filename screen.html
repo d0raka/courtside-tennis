@@ -76,13 +76,14 @@
         <p id="moment-sub"></p>
         <div class="row">
           <button type="button" id="resume" class="primary" hidden>Resume match</button>
-          <button type="button" id="practice-serve" class="primary" hidden>Serve</button>
           <button type="button" id="rematch" class="primary" hidden>Play again</button>
           <button type="button" id="pair-again" hidden>Show pairing</button>
         </div>
       </div>
     </section>
+    <div class="serve-chip" id="serve-chip" hidden>Swing through the toss</div>
     <div class="feedback" id="feedback" hidden></div>
+    <button type="button" id="practice-serve" class="serve-fab" hidden>Serve</button>
   </main>
   <footer class="court-footer">
     <span id="footer-tip">Tilt or drag to run. Swing through the ball. You steer the player.</span>
@@ -111,6 +112,7 @@
       <label><input id="sound" type="checkbox" checked> Sound</label>
       <label><input id="effects" type="checkbox" checked> Trails &amp; impact effects</label>
       <button type="button" id="new-match">Start a new match</button>
+      <button type="button" id="exit-practice" hidden>Leave practice · pair phones</button>
       <button type="button" id="new-room">Create a new room code</button>
       <p class="status" id="settings-status" role="status"></p>
       <details>
