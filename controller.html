@@ -27,27 +27,50 @@
       </div>
     </section>
     <section id="setup" hidden>
-      <span class="step">02 / CHOOSE YOUR CONTROLS</span>
-      <h1>Find your<br>sweet spot.</h1>
-      <p>Rackets move for you. You choose the aim, shot and moment to swing.</p>
+      <span class="step">02 / CHOOSE YOUR RACKET</span>
+      <h1>Phone in hand.<br>Eyes on court.</h1>
+      <p>Hold it like a living-room racket. Tilt or drag to run. Swing to hit. Touch is there if sensors are picky.</p>
       <div class="setup-actions">
-        <button type="button" id="motion" class="primary">Enable motion</button>
+        <button type="button" id="motion" class="primary">Set up motion</button>
         <button type="button" id="touch">Use touch controls</button>
       </div>
-      <p>Motion: hold your phone upright, screen facing you. Use small, controlled swings and keep a firm grip.</p>
+      <p>Stand as you would for a friendly match. Screen toward you, firm grip, swing through the ball — not at the furniture.</p>
+    </section>
+    <section id="playstyle" hidden>
+      <span class="step">03 / HOW YOU SWING</span>
+      <h1>Play it your way.</h1>
+      <p>Pick the motion that matches your living room. You can change this later.</p>
+      <div class="choice-grid" role="group" aria-label="Swing style">
+        <button type="button" id="style-flick">Flick<small>Short wrist snaps. Soft sofas, tight spaces.</small></button>
+        <button type="button" id="style-natural" class="primary">Natural<small>An easy, readable swing. The living-room default.</small></button>
+        <button type="button" id="style-full">Full swing<small>Bigger cuts. Needs a bit of room around you.</small></button>
+      </div>
+      <button type="button" id="use-saved" hidden>Use my last setup</button>
+      <button type="button" id="style-touch">Use touch instead</button>
+    </section>
+    <section id="handedness" hidden>
+      <span class="step">04 / YOUR HAND</span>
+      <h1>Which side?</h1>
+      <p>Aim flips to match the hand you swing with.</p>
+      <div class="choice-grid two" role="group" aria-label="Handedness">
+        <button type="button" id="hand-right" class="primary">Righty<small>Phone in your right hand.</small></button>
+        <button type="button" id="hand-left">Lefty<small>Phone in your left hand.</small></button>
+      </div>
+      <button type="button" id="hand-back">Back</button>
     </section>
     <section id="calibration" hidden>
-      <span class="step">03 / FIND YOUR GRIP</span>
-      <h1>Hold still.</h1>
-      <p id="calibration-copy">Hold the phone comfortably, ready to swing. Keep it still for three seconds.</p>
-      <progress id="calibration-progress" value="0" max="3"></progress>
-      <h2 id="calibration-count">3</h2>
+      <span class="step">05 / FIND YOUR GRIP</span>
+      <h1 id="calibration-title">Hold still.</h1>
+      <p id="calibration-copy">Hold the phone in your natural ready position. Keep it still so we can learn your quiet grip.</p>
+      <progress id="calibration-progress" value="0" max="5"></progress>
+      <h2 id="calibration-count">2</h2>
+      <button type="button" id="skip-practice" hidden>Skip practice swing</button>
       <button type="button" id="cancel-calibration">Use touch instead</button>
     </section>
     <section id="ready-screen" hidden>
-      <span class="step">04 / READY TO PLAY</span>
+      <span class="step">06 / READY TO PLAY</span>
       <h1>Eyes up.<br>Game on.</h1>
-      <p id="ready-copy">Drag to aim. Hold the swing button to charge, release to hit. A quick tap makes a normal shot.</p>
+      <p id="ready-copy">Tilt or drag to run. You steer the player along the baseline. Swing when the ball is there.</p>
       <button type="button" id="ready" class="primary">I'm ready</button>
       <button type="button" id="back-controls">Change controls</button>
     </section>
@@ -66,11 +89,11 @@
         <button type="button" data-shot="lob" aria-pressed="false">Lob</button>
         <button type="button" data-shot="power" aria-pressed="false">Power</button>
       </div>
-      <button type="button" id="swing"><span>SWING</span><small>Tap, or hold to charge and release</small></button>
+      <button type="button" id="swing"><span>SWING</span><small>Motion players: just swing the phone. Or tap / hold to charge</small></button>
       <div id="live-feedback" aria-live="polite">LOOK UP AT THE COURT</div>
       <div class="aim-block">
-        <div class="aim-label"><span>← AIM LEFT</span><span>AIM RIGHT →</span></div>
-        <input id="aim" aria-label="Shot aim" type="range" min="-1" max="1" step="0.02" value="0">
+        <div class="aim-label"><span>← RUN LEFT</span><span>RUN RIGHT →</span></div>
+        <input id="aim" aria-label="Run and aim" type="range" min="-1" max="1" step="0.02" value="0">
       </div>
       <div class="power-block">
         <meter id="power" min="0" max="1" value="0" aria-label="Swing power"></meter>
@@ -81,16 +104,27 @@
       </div>
       <details id="advanced">
         <summary>Advanced settings</summary>
+        <label for="play-style">Swing style</label>
+        <select id="play-style">
+          <option value="flick">Flick</option>
+          <option value="natural">Natural</option>
+          <option value="full">Full swing</option>
+        </select>
+        <label for="play-hand">Hand</label>
+        <select id="play-hand">
+          <option value="right">Righty</option>
+          <option value="left">Lefty</option>
+        </select>
         <label for="sensitivity">Motion sensitivity</label>
         <select id="sensitivity">
-          <option value="26">Low</option>
-          <option value="18">Normal</option>
-          <option value="12">High</option>
+          <option value="24">Low · bigger swings</option>
+          <option value="16">Normal</option>
+          <option value="11">High · light flicks</option>
           <option value="custom">Custom</option>
         </select>
         <label for="custom-threshold" id="custom-label" hidden>Custom swing threshold</label>
-        <input id="custom-threshold" type="range" min="8" max="40" value="18" hidden>
-        <button type="button" id="recalibrate">Recalibrate grip</button>
+        <input id="custom-threshold" type="range" min="8" max="40" value="16" hidden>
+        <button type="button" id="recalibrate">Recalibrate my swing</button>
         <pre class="diagnostics" id="diagnostics"></pre>
       </details>
     </section>
