@@ -53,8 +53,7 @@ function connect(n){
       else{remember();show('setup');say('Connected as Player '+p+'. Set up your racket.');}
     },
     rejected:function(message){say(message);network.destroy();network=null;joined=false;show('join');$('p1').disabled=$('p2').disabled=false;$('connection').textContent='CHOOSE PLAYER';},
-    offline:function(){joined=false;$('connection').textContent='RECONNECTING';say('Connection interrupted. Your match is paused. Reconnecting…');
-    },
+    offline:function(){joined=false;$('connection').textContent='RECONNECTING';say('Connection interrupted. Your match is paused. Reconnecting…');},
     error:function(message){say(message);$('p1').disabled=$('p2').disabled=false;},
     feedback:function(data){
       if(!data)return;
@@ -202,6 +201,21 @@ function beginCalibration(quick){
 $('skip-practice').onclick=function(){skipPractice=true;clearInterval(calibrationTimer);finishMotionSetup();};
 
 $('ready').onclick=function(){if(!joined)return say('Waiting to reconnect. You can leave and join again.');if(!mode)return;show('play');setReady(true);$('unready').textContent='Take a break';say('Ready. Start the match on the main screen.');};
+$('unready').onclick=function(){
+  if(!joined)return say('Waiting to reconnect. You can leave and join again.');
+  if(!mode)return;
+  if(ready){
+    setReady(false);
+    $('unready').textContent='Ready again';
+    say('Break taken. The match is paused. Tap Ready again when you are back.');
+  }else{
+    show('play');
+    setReady(true);
+    $('unready').textContent='Take a break';
+    say('Ready. Eyes on the court.');
+  }
+};
+$('pin').addEventListener('input',function(){this.value=this.value.replace(/\D/g,'').slice(0,6);});
 $('back-controls').onclick=function(){setReady(false);show('setup');};
 $('controls').onclick=function(){setReady(false);show('setup');};
 $('recalibrate').onclick=function(){if(!motion.enabled){show('setup');return;}openPlaystyle();};
