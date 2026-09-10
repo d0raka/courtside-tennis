@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#091b1d">
+  <meta name="description" content="Courtside host screen — pair two phones and play tennis on the TV.">
+  <title>Courtside — Centre Court</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="host">
+  <a class="skip" href="#court">Skip to court</a>
+  <header class="topbar">
+    <a class="brand" href="index.html">COURTSIDE<i> /</i></a>
+    <span class="room-small" id="room-small">CENTRE COURT</span>
+    <nav aria-label="Court controls">
+      <button type="button" id="pause">Pause</button>
+      <button type="button" id="fullscreen">Full screen</button>
+      <button type="button" id="settings-open">Settings</button>
+    </nav>
+  </header>
+  <div id="compat" class="compat" role="status" hidden></div>
+  <section class="matchbar" aria-label="Score">
+    <div class="score-player">
+      <strong class="score-number p1" id="score1">0</strong>
+      <div>
+        <div class="score-name p1">PLAYER 01 <span id="serve1">●</span></div>
+        <div class="score-meta" id="games1">0 GAMES · 0 SETS</div>
+      </div>
+    </div>
+    <div class="match-center">
+      <strong id="match-label">QUICK MATCH</strong>
+      <span id="rally">RALLY 0 · BEST 0</span>
+    </div>
+    <div class="score-player right">
+      <div>
+        <div class="score-name p2">PLAYER 02 <span id="serve2"></span></div>
+        <div class="score-meta" id="games2">0 GAMES · 0 SETS</div>
+      </div>
+      <strong class="score-number p2" id="score2">0</strong>
+    </div>
+  </section>
+  <p class="sr-only" id="announce" aria-live="polite"></p>
+  <main class="arena">
+    <canvas id="court" aria-label="Live tennis court. Player one is lime, player two is blue."></canvas>
+    <section class="overlay" id="pair-overlay">
+      <div class="pairing">
+        <div class="qr">
+          <canvas id="qr" width="220" height="220" aria-label="QR code to join this court"></canvas>
+          <div class="qr-label">SCAN WITH BOTH PHONES</div>
+        </div>
+        <div>
+          <span class="eyebrow">01 / BRING YOUR DOUBLES</span>
+          <h2>Meet you on court.</h2>
+          <div class="room-code" id="room-code">······</div>
+          <a class="join-url" id="join-url">Creating your court…</a>
+          <div class="slots">
+            <div class="slot"><strong class="p1">PLAYER 01</strong><span id="slot1">Waiting for phone</span></div>
+            <div class="slot"><strong class="p2">PLAYER 02</strong><span id="slot2">Waiting for phone</span></div>
+          </div>
+          <p class="status" id="notice" role="status">Scan the code or enter this room on your phone.</p>
+          <div class="row">
+            <button type="button" id="start" class="primary" disabled>Start match</button>
+            <button type="button" id="copy">Copy join link</button>
+            <button type="button" id="practice">Practice</button>
+            <button type="button" id="local-p1">Use this phone as P1</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="overlay" id="moment-overlay" hidden>
+      <div class="moment">
+        <span class="eyebrow" id="moment-kicker">CENTRE COURT</span>
+        <h2 id="moment-title">READY</h2>
+        <p id="moment-sub"></p>
+        <div class="row">
+          <button type="button" id="resume" class="primary" hidden>Resume match</button>
+          <button type="button" id="practice-serve" class="primary" hidden>Serve</button>
+          <button type="button" id="rematch" class="primary" hidden>Play again</button>
+          <button type="button" id="pair-again" hidden>Show pairing</button>
+        </div>
+      </div>
+    </section>
+    <div class="feedback" id="feedback" hidden></div>
+  </main>
+  <footer class="court-footer">
+    <span id="footer-tip">Rackets move for you. Aim your shot, then swing as the ball reaches you.</span>
+    <span id="camera-label">SPLIT SCREEN / TWO BASELINES</span>
+  </footer>
+  <div class="settings" id="settings" role="dialog" aria-modal="true" aria-labelledby="settings-title" hidden>
+    <div class="settings-panel">
+      <button type="button" class="close" id="settings-close" aria-label="Close settings">✕</button>
+      <h2 id="settings-title">Court settings</h2>
+      <label for="camera">Camera</label>
+      <select id="camera">
+        <option value="split">Split screen</option>
+        <option value="broadcast">Broadcast</option>
+        <option value="classic">Classic court</option>
+        <option value="dynamic">Dynamic</option>
+      </select>
+      <label for="length">Match length</label>
+      <select id="length">
+        <option value="quick">Quick match · one game</option>
+        <option value="three">First to 3 games</option>
+        <option value="set">One set</option>
+        <option value="best3">Best of 3 sets</option>
+        <option value="rally">Arcade rally · unlimited</option>
+      </select>
+      <small>Match length applies when you start a new match.</small>
+      <label><input id="sound" type="checkbox" checked> Sound</label>
+      <label><input id="effects" type="checkbox" checked> Trails &amp; impact effects</label>
+      <button type="button" id="new-match">Start a new match</button>
+      <button type="button" id="new-room">Create a new room code</button>
+      <p class="status" id="settings-status" role="status"></p>
+      <details>
+        <summary>Connection &amp; compatibility</summary>
+        <p>Keep the court and both phones open on the same Wi-Fi with internet access. If your TV cannot connect, open the court on a computer or tablet and mirror it to the TV. Guest networks may block direct connections.</p>
+        <p>Disconnected players keep their place for 60 seconds. Reloading this court restores the score and restarts the interrupted point.</p>
+      </details>
+      <a class="button" href="index.html">Leave court</a>
+    </div>
+  </div>
+  <pre class="debug" id="debug" hidden></pre>
+  <noscript><div class="compat">JavaScript is disabled in this browser. Enable it, or open this court on another device and mirror it to your TV.</div></noscript>
+  <script src="js/core.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/network.js"></script>
+  <script src="js/motion.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
+  <script>window.CourtQR={toCanvas:function(c,t,o,cb){return QRCode.toCanvas(c,t,o,cb);}};</script>
+  <script src="js/host.js"></script>
+  <script src="tv-remote.js"></script>
+</body>
+</html>

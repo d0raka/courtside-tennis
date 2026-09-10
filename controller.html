@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#091b1d">
+  <meta name="description" content="Phone racket for Courtside Tennis. Motion or touch.">
+  <title>Courtside — Your Racket</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="phone">
+  <header class="topbar">
+    <a class="brand" href="index.html">COURTSIDE<i> /</i></a>
+    <span class="pill" id="connection">NOT CONNECTED</span>
+  </header>
+  <main>
+    <section id="join">
+      <span class="step">01 / JOIN THE COURT</span>
+      <h1>Your phone.<br>Your racket.</h1>
+      <p>Enter the code on the main screen.<br>Choose your side.</p>
+      <label for="pin">Room code</label>
+      <input id="pin" inputmode="numeric" pattern="[0-9]{6}" autocomplete="one-time-code" maxlength="6" placeholder="000000" aria-describedby="status">
+      <div class="player-choice">
+        <button type="button" id="p1" class="primary">P1 · Lime</button>
+        <button type="button" id="p2" style="color:var(--p2)">P2 · Blue</button>
+      </div>
+    </section>
+    <section id="setup" hidden>
+      <span class="step">02 / CHOOSE YOUR CONTROLS</span>
+      <h1>Find your<br>sweet spot.</h1>
+      <p>Rackets move for you. You choose the aim, shot and moment to swing.</p>
+      <div class="setup-actions">
+        <button type="button" id="motion" class="primary">Enable motion</button>
+        <button type="button" id="touch">Use touch controls</button>
+      </div>
+      <p>Motion: hold your phone upright, screen facing you. Use small, controlled swings and keep a firm grip.</p>
+    </section>
+    <section id="calibration" hidden>
+      <span class="step">03 / FIND YOUR GRIP</span>
+      <h1>Hold still.</h1>
+      <p id="calibration-copy">Hold the phone comfortably, ready to swing. Keep it still for three seconds.</p>
+      <progress id="calibration-progress" value="0" max="3"></progress>
+      <h2 id="calibration-count">3</h2>
+      <button type="button" id="cancel-calibration">Use touch instead</button>
+    </section>
+    <section id="ready-screen" hidden>
+      <span class="step">04 / READY TO PLAY</span>
+      <h1>Eyes up.<br>Game on.</h1>
+      <p id="ready-copy">Drag to aim. Hold the swing button to charge, release to hit. A quick tap makes a normal shot.</p>
+      <button type="button" id="ready" class="primary">I'm ready</button>
+      <button type="button" id="back-controls">Change controls</button>
+    </section>
+    <section id="play" hidden>
+      <div class="controller-head">
+        <div>
+          <span class="step" id="room-label"></span>
+          <h1 id="identity">PLAYER 01</h1>
+        </div>
+        <span class="pill" id="mode-label">TOUCH</span>
+      </div>
+      <div class="shot-types" role="group" aria-label="Shot type">
+        <button type="button" data-shot="flat" aria-pressed="true">Flat</button>
+        <button type="button" data-shot="topspin" aria-pressed="false">Topspin</button>
+        <button type="button" data-shot="slice" aria-pressed="false">Slice</button>
+        <button type="button" data-shot="lob" aria-pressed="false">Lob</button>
+        <button type="button" data-shot="power" aria-pressed="false">Power</button>
+      </div>
+      <button type="button" id="swing"><span>SWING</span><small>Tap, or hold to charge and release</small></button>
+      <div id="live-feedback" aria-live="polite">LOOK UP AT THE COURT</div>
+      <div class="aim-block">
+        <div class="aim-label"><span>← AIM LEFT</span><span>AIM RIGHT →</span></div>
+        <input id="aim" aria-label="Shot aim" type="range" min="-1" max="1" step="0.02" value="0">
+      </div>
+      <div class="power-block">
+        <meter id="power" min="0" max="1" value="0" aria-label="Swing power"></meter>
+      </div>
+      <div class="tiny-actions">
+        <button type="button" id="unready">Take a break</button>
+        <button type="button" id="controls">Controls</button>
+      </div>
+      <details id="advanced">
+        <summary>Advanced settings</summary>
+        <label for="sensitivity">Motion sensitivity</label>
+        <select id="sensitivity">
+          <option value="26">Low</option>
+          <option value="18">Normal</option>
+          <option value="12">High</option>
+          <option value="custom">Custom</option>
+        </select>
+        <label for="custom-threshold" id="custom-label" hidden>Custom swing threshold</label>
+        <input id="custom-threshold" type="range" min="8" max="40" value="18" hidden>
+        <button type="button" id="recalibrate">Recalibrate grip</button>
+        <pre class="diagnostics" id="diagnostics"></pre>
+      </details>
+    </section>
+    <p class="status" id="status" role="status" aria-live="polite">Same Wi-Fi with internet · Keep the court open.</p>
+    <button type="button" id="leave" hidden>Leave court</button>
+  </main>
+  <noscript><p class="compat">Enable JavaScript to connect this phone.</p></noscript>
+  <script src="js/core.js"></script>
+  <script src="js/network.js"></script>
+  <script src="js/motion.js"></script>
+  <script src="js/controller.js"></script>
+</body>
+</html>
