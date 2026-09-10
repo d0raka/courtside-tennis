@@ -433,12 +433,29 @@ select {
  font-size:32px;
  letter-spacing:.15em;
  font-weight:700}
-.phone .setup-actions {
+.phone .setup-actions,.phone .choice-grid {
  display:grid;
  gap:12px;
  margin:22px 0}
-.phone .setup-actions button {
+.phone .setup-actions button,.phone .choice-grid button {
  min-height:64px}
+.phone .choice-grid.two {
+ grid-template-columns:1fr 1fr}
+.phone .choice-grid button {
+ flex-direction:column;
+ align-items:flex-start;
+ justify-content:center;
+ text-align:left;
+ min-height:84px;
+ padding:16px 18px}
+.phone .choice-grid small {
+ display:block;
+ margin-top:6px;
+ font-weight:500;
+ color:var(--muted);
+ letter-spacing:0}
+.phone .choice-grid button.primary small {
+ color:#244334}
 .phone #identity {
  font-size:30px;
  letter-spacing:-1px;
