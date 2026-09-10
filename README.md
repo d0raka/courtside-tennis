@@ -12,7 +12,7 @@ A host-authoritative browser tennis game for one shared screen and two phone con
 
 Keep the screen and controllers foregrounded on the same Wi-Fi with internet access. For an incompatible TV, mirror a compatible computer/tablet, or mirror one iPhone, select **Use this phone as P1**, enable motion and join P2 from the other iPhone.
 
-**Practice** uses a P2 bot and P1 keyboard/touch input. Hold ← → (or A D) to run. Space or a tap swings. No network is required for practice after the assets load.
+**Practice** uses a P2 bot and P1 keyboard/touch input. Hold ← → (or A D) to run — running no longer hijacks aim. Space or a tap swings. The serve toss stays on court (no full-screen card over it). Settings includes **Leave practice · pair phones** so you can start a real match without reloading. No network is required for practice after the assets load.
 
 ## Rules and views
 
@@ -28,7 +28,7 @@ Keep the screen and controllers foregrounded on the same Wi-Fi with internet acc
 - A disconnected controller's slot is reserved for 60 seconds; play pauses immediately on close/unready or after the heartbeat timeout for silent failures.
 - Reloading a controller restores its room, player and last control mode within the same browser session. Touch players return to Ready; motion players recalibrate, then tap Ready.
 - Reloading the host restores the room, score and reservations within a one-hour session window. The interrupted point restarts; in-flight ball state is not restored.
-- A controller left in the background for two seconds must tap Ready again. Coming back sooner keeps the ready state. Rotating the phone recenters aim without kicking you out; recalibrate only if the new grip feels wrong.
+- A controller left in the background for two seconds must tap Ready again. Coming back sooner keeps the ready state. **Take a break** on the play screen unreadies you and pauses the match; tap **Ready again** on that same button to return. Rotating the phone recenters aim without kicking you out; recalibrate only if the new grip feels off.
 - Settings include a fresh room-code recovery action, which keeps the score and asks the players to pair again.
 
 ## Architecture and development
