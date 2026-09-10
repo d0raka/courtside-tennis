@@ -22,11 +22,11 @@
 }
 :root {
  color-scheme:dark;
- --bg:#091b1d;
- --panel:#10272b;
- --line:#314548;
- --text:#f0f4e9;
- --muted:#a7bbb5;
+ --bg:#082018;
+ --panel:#123226;
+ --line:#3a5a46;
+ --text:#f4fff0;
+ --muted:#b7cbb8;
  --p1:#d5ff61;
  --p2:#67ceff;
  --radius:16px;
@@ -190,7 +190,7 @@ select {
  position:absolute;
  inset:0;
  pointer-events:none;
- background:linear-gradient(90deg,#07191ef7 0%,#07191eeb 30%,#07191e38 68%,#07191e10 100%)}
+ background:linear-gradient(90deg,#082018f5 0%,#082018d8 28%,#08201840 66%,#08201810 100%)}
 .home .topbar,.home main,.home footer {
  position:relative;
  z-index:2}
@@ -239,7 +239,7 @@ select {
  align-items:center;
  padding:14px var(--space);
  gap:20px;
- background:#0a2023}
+ background:#0a261c}
 .score-player {
  display:flex;
  gap:18px;
@@ -587,6 +587,109 @@ select {
  font:13px/1.6 monospace;
  white-space:pre-wrap;
  color:var(--muted)}
+.phone.playing {
+ overflow:hidden;
+ background:#0b2a18}
+.phone.playing main {
+ max-width:none;
+ padding:0;
+ height:100dvh}
+.phone.playing #play {
+ position:fixed;
+ inset:0;
+ display:block}
+#racket-pad {
+ position:absolute;
+ inset:0;
+ touch-action:none;
+ background:radial-gradient(circle at 50% 38%,#1c5a38 0%,#0c2a18 62%,#071910 100%)}
+.phone.swung #racket-pad {
+ background:radial-gradient(circle at 50% 38%,#d5ff61 0%,#1c5a38 55%,#071910 100%)}
+.racket-hud {
+ position:absolute;
+ inset:0;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ pointer-events:none;
+ text-align:center;
+ padding:48px 24px}
+.racket-hud h1 {
+ font-size:42px;
+ margin:8px 0 18px}
+.phone.playing #live-feedback,
+.racket-hud #live-feedback {
+ font-size:28px;
+ font-weight:800;
+ letter-spacing:-.03em;
+ color:var(--accent,var(--p1));
+ min-height:34px;
+ margin:0}
+.tilt-track {
+ width:220px;
+ height:16px;
+ margin:28px 0 18px;
+ border-radius:99px;
+ background:#143525;
+ position:relative}
+#tilt-dot {
+ position:absolute;
+ top:-6px;
+ left:50%;
+ width:28px;
+ height:28px;
+ margin-left:-14px;
+ border-radius:50%;
+ background:var(--accent,var(--p1));
+ box-shadow:0 0 18px #d5ff6188;
+ transition:transform .08s linear}
+.racket-hint {
+ color:#e8ffd8;
+ font-size:18px;
+ margin:0}
+.racket-ghost {
+ color:#8eae93;
+ font-size:13px;
+ margin:10px 0 0}
+.hand-tilt {
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:12px;
+ margin:36px 0;
+ padding:18px;
+ border:1px solid var(--line);
+ border-radius:18px;
+ position:relative;
+ overflow:hidden}
+#hand-needle {
+ width:18px;
+ height:18px;
+ border-radius:50%;
+ background:var(--p1);
+ position:absolute;
+ left:50%;
+ margin-left:-9px;
+ transition:transform .1s linear}
+#escape-tray {
+ position:absolute;
+ left:16px;
+ right:16px;
+ bottom:20px;
+ z-index:5;
+ padding:18px;
+ background:#0e2a1ef2;
+ border:1px solid #4d7358;
+ border-radius:18px;
+ display:grid;
+ gap:10px}
+#escape-tray[hidden] {
+ display:none!important}
+#escape-tray p {
+ margin:0 0 4px;
+ color:var(--p1);
+ font-weight:800}
 
 @media(min-width:1900px) {
  .topbar {
