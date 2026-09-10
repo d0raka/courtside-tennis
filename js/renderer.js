@@ -54,7 +54,7 @@ C.Renderer.prototype.draw=function(engine,alpha,dt){
   if(b)renderBall={x:old?old.x+(b.x-old.x)*alpha:b.x,y:old?old.y+(b.y-old.y)*alpha:b.y,z:old?old.z+(b.z-old.z)*alpha:b.z};
   if(!renderBall&&engine.state==='SERVING'){
     var sign=engine.score.server===0?1:-1,side=(engine.score.points[0]+engine.score.points[1])%2===0?-.7:.7;
-    renderBall={x:side*sign,y:-11.5*sign,z:1.12+Math.sin((engine.time||0)*4)*.1};
+    renderBall={x:side*sign,y:-10.45*sign,z:1.12+Math.sin((engine.time||0)*4)*.1};
   }
   if(renderBall&&(engine.state==='RALLY'||engine.state==='SERVING')&&this.settings.get('effects',true)){
     this.trail.push(renderBall);
@@ -344,11 +344,21 @@ C.Renderer.prototype.viewport=function(v,engine,ball){
     ctx.globalAlpha=1;
     var ground=project(ball.x,ball.y,0),bp=project(ball.x,ball.y,ball.z);
     var toss=engine.state==='SERVING'&&engine.ball&&engine.ball.toss;
-    var rad=Math.max(toss?7:5,Math.min(toss?14:11,bp.s*(toss?.26:.18)));
+    var rad=Math.max(toss?9:5,Math.min(toss?18:11,bp.s*(toss?.34:.18)));
     ctx.fillStyle='rgba(20,40,16,.38)';
     ctx.beginPath();
     ctx.ellipse(ground.x,ground.y,rad*1.15,rad*.42,0,0,Math.PI*2);
     ctx.fill();
+    if(toss){
+      ctx.strokeStyle='rgba(246,255,176,.85)';
+      ctx.lineWidth=Math.max(2,rad*.18);
+      if(ctx.setLineDash)ctx.setLineDash([5,5]);
+      ctx.beginPath();
+      ctx.moveTo(ground.x,ground.y);
+      ctx.lineTo(bp.x,bp.y);
+      ctx.stroke();
+      if(ctx.setLineDash)ctx.setLineDash([]);
+    }
     var glow=ctx.createRadialGradient(bp.x-rad*.3,bp.y-rad*.35,1,bp.x,bp.y,rad);
     glow.addColorStop(0,'#f7ffb0');
     glow.addColorStop(.55,'#d8f04a');
@@ -386,9 +396,11 @@ C.Renderer.prototype.viewport=function(v,engine,ball){
     {d:project(engine.players[1].x,11,0).d,fn:function(){avatar(1);}},
     {d:project(0,0,.4).d,fn:drawNet}
   ];
-  if(ball)sprites.push({d:project(ball.x,ball.y,ball.z).d,fn:drawBall});
+  var tossing=engine.state==='SERVING'&&engine.ball&&engine.ball.toss;
+  if(ball&&!tossing)sprites.push({d:project(ball.x,ball.y,ball.z).d,fn:drawBall});
   sprites.sort(function(a,b){return b.d-a.d;});
   for(var si=0;si<sprites.length;si++)sprites[si].fn();
+  if(tossing)drawBall();
   drawParticles();
 
   var fontsize=Math.max(12,Math.min(22,w/30)),pad=Math.max(18,w*.04);
