@@ -8,11 +8,11 @@ A host-authoritative browser tennis game for one shared screen and two phone con
 2. Scan the QR code on both phones, or open **Join on phone** and enter the six-digit room code.
 3. Pick P1 or P2. Choose touch, or set up motion: pick flick / natural / full swing, choose your hand, hold still so the phone learns your quiet grip, then make one practice swing. Returning players can reuse their last setup.
 4. Tap **I'm ready** on both phones, then **Start match** on the TV.
-5. Tilt or drag to run along the baseline — you steer the player. If you hold still, they take a last step toward the ball. The serve tosses itself; swing through it. One swing is one shot. Leave shot type on Flat and a rising or chopping swing becomes topspin or slice. Touch players tap or hold/release SWING to control power.
+5. Look at the TV. The phone is the racket: **tilt to run, swing to hit**. There are no gameplay buttons. A rising swing becomes topspin; a chopping swing becomes slice. If sensors are blocked, the whole glass is still the racket — drag to run, flick to swing. Hold the phone still for a second to open Leave / Recalibrate.
 
 Keep the screen and controllers foregrounded on the same Wi-Fi with internet access. For an incompatible TV, mirror a compatible computer/tablet, or mirror one iPhone, select **Use this phone as P1**, enable motion and join P2 from the other iPhone.
 
-**Practice** uses a P2 bot and P1 keyboard/touch input. Hold ← → (or A D) to run — running no longer hijacks aim. Space or a tap swings. The serve toss stays on court (no full-screen card over it). Settings includes **Leave practice · pair phones** so you can start a real match without reloading. No network is required for practice after the assets load.
+**Practice** uses a P2 bot and P1 keyboard input on the TV. Hold ← → (or A D) to run. Space or a tap swings. The court is a 3D living-room view. Settings includes **Leave practice · pair phones**. No network is required for practice after the assets load.
 
 ## Rules and views
 
