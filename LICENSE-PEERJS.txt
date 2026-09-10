@@ -1,0 +1,1 @@
+PeerJS 1.5.5 is MIT licensed. See https://github.com/peers/peerjs

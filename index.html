@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#091b1d">
+  <meta name="description" content="Host-authoritative living-room tennis. One shared screen, two phone rackets.">
+  <title>Courtside — Game on.</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="home">
+  <a class="skip" href="#start-play">Skip to play</a>
+  <canvas id="court" aria-hidden="true"></canvas>
+  <header class="topbar">
+    <a class="brand" href="index.html">COURTSIDE<i> /</i></a>
+    <span class="pill">TENNIS, TOGETHER.</span>
+  </header>
+  <main id="start-play">
+    <span class="eyebrow">YOUR LIVING ROOM. CENTRE COURT.</span>
+    <h1>Game.<br>Set.<br>Your place.</h1>
+    <p>Turn your phones into tennis rackets.<br>One screen. Two players. Game on.</p>
+    <div class="actions">
+      <a class="button primary" href="screen.html">Create court <span aria-hidden="true">↗</span></a>
+      <a class="button" href="controller.html">Join on phone</a>
+    </div>
+    <p class="minor"><a class="link" href="screen.html?practice=1">Try a practice rally</a> · No phones needed</p>
+  </main>
+  <footer>
+    <span>02 PLAYERS / MOTION OR TOUCH</span>
+    <span>SAME WI-FI · INTERNET REQUIRED</span>
+  </footer>
+  <noscript><div class="compat">Enable JavaScript, then open this page on a TV or laptop.</div></noscript>
+  <script src="js/core.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="js/home.js"></script>
+  <script src="tv-remote.js"></script>
+</body>
+</html>
